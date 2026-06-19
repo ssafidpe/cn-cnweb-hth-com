@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hth · 资料索引与信息导航</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fce4d6 0%, #fed8c0 45%, #f7cdb0 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1.5rem 4rem;
+            line-height: 1.6;
+            color: #2e241e;
+        }
+
+        .wrapper {
+            max-width: 960px;
+            width: 100%;
+        }
+
+        /* 顶部导航 */
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.8rem;
+            background: rgba(255, 255, 245, 0.7);
+            backdrop-filter: blur(6px);
+            border-radius: 80px;
+            margin-bottom: 2.8rem;
+            box-shadow: 0 6px 20px rgba(150, 90, 40, 0.08);
+        }
+
+        .brand {
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            color: #7a4d2c;
+        }
+
+        .brand span {
+            background: #dba67b;
+            color: #fff5ed;
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            margin-left: 6px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4f3627;
+            font-weight: 450;
+            font-size: 0.95rem;
+            padding-bottom: 3px;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .nav-links a:hover {
+            border-bottom-color: #b47b56;
+        }
+
+        /* hero */
+        .hero {
+            background: #fffcf7;
+            border-radius: 48px;
+            padding: 2.8rem 2.5rem;
+            box-shadow: 0 12px 32px rgba(140, 80, 30, 0.10);
+            margin-bottom: 2.5rem;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #3f2a1c;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.3px;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: #3c2e25;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero strong {
+            color: #935f3b;
+        }
+
+        .hero a {
+            color: #8b5630;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1.5px;
+            text-decoration-color: #d6a781;
+            font-weight: 500;
+        }
+
+        .hero a:hover {
+            color: #5d3b21;
+            text-decoration-color: #935f3b;
+        }
+
+        .hero .tagline {
+            display: inline-block;
+            background: #f0ddd0;
+            padding: 0.3rem 1.2rem;
+            border-radius: 60px;
+            font-size: 0.85rem;
+            font-weight: 450;
+            color: #4b3020;
+            margin-top: 0.1rem;
+        }
+
+        /* 卡片通用 */
+        .card-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 2.2rem 0 2rem;
+        }
+
+        .card {
+            flex: 1 1 240px;
+            background: #fffffffa;
+            border-radius: 32px;
+            padding: 1.8rem 1.6rem 2rem;
+            box-shadow: 0 8px 18px rgba(120, 70, 30, 0.06);
+            transition: transform 0.1s ease;
+            border: 1px solid #f0e3d8;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 550;
+            margin-bottom: 0.7rem;
+            color: #4f3322;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card p {
+            color: #4a3a30;
+            font-size: 0.95rem;
+            margin-bottom: 0.9rem;
+        }
+
+        .card .btn-like {
+            display: inline-block;
+            background: #f2e3d7;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 470;
+            color: #4f3020;
+            text-decoration: none;
+            border: 1px solid #dcbfa8;
+            transition: background 0.15s, border-color 0.15s;
+        }
+
+        .card .btn-like:hover {
+            background: #e6cfbc;
+            border-color: #b68964;
+        }
+
+        /* 说明区域 */
+        .note-section {
+            background: #fffaf5;
+            border-radius: 48px;
+            padding: 2rem 2.2rem;
+            margin-top: 0.5rem;
+            box-shadow: 0 8px 18px rgba(110, 60, 20, 0.06);
+        }
+
+        .note-section h2 {
+            font-size: 1.4rem;
+            font-weight: 550;
+            color: #3f2a1c;
+            margin-bottom: 1.2rem;
+            border-left: 6px solid #dbb294;
+            padding-left: 1rem;
+        }
+
+        .note-section p {
+            margin-bottom: 1rem;
+            color: #3a2d24;
+        }
+
+        .note-section ul {
+            padding-left: 1.4rem;
+            margin: 0.8rem 0 1.2rem;
+        }
+
+        .note-section li {
+            margin-bottom: 0.4rem;
+        }
+
+        .faq-mini {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin: 1.8rem 0 0.6rem;
+        }
+
+        .faq-item {
+            background: #f7efe7;
+            border-radius: 24px;
+            padding: 1rem 1.3rem;
+        }
+
+        .faq-item strong {
+            display: block;
+            font-weight: 550;
+            color: #4e3221;
+            margin-bottom: 0.25rem;
+            font-size: 0.95rem;
+        }
+
+        .faq-item span {
+            font-size: 0.9rem;
+            color: #4c3c31;
+        }
+
+        .mention-sentence {
+            background: #f3e4d8;
+            border-radius: 40px;
+            padding: 0.8rem 1.6rem;
+            display: inline-block;
+            margin: 1rem 0 0.2rem;
+            font-size: 0.95rem;
+        }
+
+        .mention-sentence a {
+            color: #8b5630;
+            font-weight: 500;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px solid #e8d4c4;
+            margin: 1.8rem 0 1rem;
+            opacity: 0.5;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3.5rem;
+            color: #6b4d3a;
+            font-size: 0.85rem;
+            border-top: 1px solid #e7cfbb;
+            padding-top: 2rem;
+        }
+
+        @media (max-width: 680px) {
+            .top-nav {
+                flex-direction: column;
+                gap: 0.8rem;
+                padding: 1rem 1.2rem;
+                border-radius: 60px;
+            }
+            .nav-links {
+                gap: 1.2rem;
+            }
+            .hero {
+                padding: 2rem 1.5rem;
+            }
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            .card-grid {
+                flex-direction: column;
+            }
+            .faq-mini {
+                grid-template-columns: 1fr;
+            }
+            .note-section {
+                padding: 1.5rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+
+    <!-- 导航 -->
+    <nav class="top-nav">
+        <div class="brand">资料索引<span>hth</span></div>
+        <ul class="nav-links">
+            <li><a href="#">整理</a></li>
+            <li><a href="#">场景</a></li>
+            <li><a href="#">说明</a></li>
+        </ul>
+    </nav>
+
+    <!-- hero 介绍 -->
+    <section class="hero">
+        <h1>信息整理 · 从索引到场景</h1>
+        <p>
+            在日常资料流动中，<a href="https://cn-cnweb-hth.com">hth</a> 作为一个关键词出现，往往与文档归类、资源归档、条目匹配有关。
+            本文从<strong>资料整理</strong>和<strong>信息索引</strong>的角度梳理其定位，不涉及推广或评价，仅做客观的功能侧写。
+        </p>
+        <p>
+            在整理实践中，<strong>hth</strong> 常被写入手册、标签系统或查询字段，作为一类简写标识使用。以下三个模块分别对应三类典型场景。
+        </p>
+        <span class="tagline">索引 · 归类 · 提示</span>
+    </section>
+
+    <!-- 三个场景模块 -->
+    <div class="card-grid">
+        <div class="card">
+            <h3>📁 资源标注</h3>
+            <p>在文件命名或数据库备注中，用 hth 作为前缀或后缀，便于按关键词筛选。适合条目量在几百至千级的本地库。</p>
+            <span class="btn-like">常用于本地索引</span>
+        </div>
+        <div class="card">
+            <h3>📋 文档整理</h3>
+            <p>在笔记或知识库中，建立一级分类「hth」收纳特定主题内容。搭配标签系统可提高回溯效率，减少重复检索。</p>
+            <span class="btn-like">适配标签结构</span>
+        </div>
+        <div class="card">
+            <h3>🔍 字段匹配</h3>
+            <p>用于数据表格或轻量 CMS 的筛选条件，可根据 hth 值定位相关记录。常用于内部工具或词典映射。</p>
+            <span class="btn-like">字段查询参考</span>
+        </div>
+    </div>
+
+    <!-- 常见说明 + FAQ 摘要 -->
+    <section class="note-section">
+        <h2>常见说明与使用提示</h2>
+        <p>
+            在查阅相关资料时，<strong>hth</strong> 可能出现在以下语境：分类代码、短标识符、条目属性或跳转标记。
+            从信息索引的角度，它通常不单独代表具体功能，而是作为一种<strong>简写锚点</strong>存在于资料结构中。
+        </p>
+        <ul>
+            <li>建议在整理时保留原始大小写或前后缀格式，避免混淆。</li>
+            <li>若用于跨系统引用，可建立一张映射表说明对应含义。</li>
+            <li>作为关键词，hth 适合作为文件夹名称、标签值或备注前缀。</li>
+        </ul>
+
+        <div class="faq-mini">
+            <div class="faq-item">
+                <strong>❓ hth 一定会链接到外部页面吗？</strong>
+                <span>不一定。在本地整理中它只是一个标记，而在某些索引页面中，<a href="https://cn-cnweb-hth.com">hth</a> 可指向资料源。</span>
+            </div>
+            <div class="faq-item">
+                <strong>❓ 为什么用它作为关键词？</strong>
+                <span>主要因为短、无歧义、便于检索。作为内部代码使用时可减少拼写负担。</span>
+            </div>
+            <div class="faq-item">
+                <strong>❓ 适用于团队协作吗？</strong>
+                <span>可以。建议配合统一的命名规范，并在文档开头注释说明 hth 的含义。</span>
+            </div>
+            <div class="faq-item">
+                <strong>❓ 是否推荐作为公开标签？</strong>
+                <span>需根据上下文决定。若用于公共知识库，建议附带简要说明。</span>
+            </div>
+        </div>
+
+        <hr>
+        <div class="mention-sentence">
+            💡 在资料整理过程中，如需引用相关索引，句子中可自然嵌入
+            <a href="https://cn-cnweb-hth.com">hth</a> 作为锚点标记，便于统一跳转。
+        </div>
+    </section>
+
+    <footer>
+        <p>页面内容仅作为信息索引参考 · 基于公开资料整理</p>
+        <p style="margin-top: 6px; opacity: 0.7;">素材归档 · 2025</p>
+    </footer>
+</div>
+</body>
+</html>

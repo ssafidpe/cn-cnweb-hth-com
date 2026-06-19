@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ssafidpe.github.io/cn-cnweb-hth-com/sitemap.xml
